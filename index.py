@@ -15,7 +15,7 @@ m_cur=m_con.cursor()   #cursor
 m_cur.execute('create database WMS')
 m_cur.execute('create table sector_w(sec_id int not null, worker_id int primary key not null, worker_name varchar(655)not null, w_address varchar(60000) not null,w_phno.(+91) int unique)')
 m_cur.execute('create table sector_h(house_id int primary key not null,address varchar(60000) unique not null,resident name varchar(255) not null,resident_phno.(+91) int unique,sec_id int not null)')
-m_cur.execute("create table record(house_id int primary key not null,w_coll_status(collected/not collected) varchar(255) default 'not collected', pay_amount varchar(255) not null, pay_status(INR) varchar(255) default'unpaid')")
+m_cur.execute("create table record(date(dd/mm/yyyy) varchar(12) not null,house_id int primary key not null,w_coll_status(collected/not collected) varchar(255) default 'not collected', pay_amount varchar(255) not null, pay_status(INR) varchar(255) default'unpaid')")
 m_con.commit()
 m_con.close()
 print('Tables created successfully')
@@ -121,11 +121,12 @@ def ed_r():
     	while True:
 		c_r=int(input('1.Enter new data \n2.Update payment status \n3.Update waste collection status \n4.Exit:'))
 		if c_r==1:
+			r0=input('Enter date(dd/mm/yyyy):')
 			r1=int(input('enter house id:'))
     			r2=input('enter waste collection status(collected/not collecter):')
     			r3=int(input('enter amount to be paid:'))
     			r4=input('enter payment status(paid/unpaid):')
-    			m_cur.execute('insert into table record values({},"{}".{},"{}")'.format(r1,r2,r3,r4))
+    			m_cur.execute('insert into table record values('{}',{},"{}".{},"{}")'.format(r0,r1,r2,r3,r4))
     			m_con.commit()
 			print('Values inserted successfully')
 		elif c_r==2:
@@ -181,26 +182,26 @@ def sh_r():
 	m_cur.execute('use WMS')
 	m_cur('select * from record')
 	row=m_cur.fetchall()
-	print('House ID\t\t Waste Collection status\t\t Payment Amount\t\t Payment Status')
+	print('Date\t\t House ID\t\t Waste Collection status\t\t Payment Amount\t\t Payment Status')
 	for r in row:
-		print(r[0]\t\t r[1]\t\t r[2]\t\t r[3]\t\t)
+		print(r[0],'\t\t',r[1],'\t\t',r[2],'\t\t',r[3],'\t\t')
 while True:
     print('1.Sector Worker\n 2.Sector House\n 3.Record')
     c=int(input('Enter choice:'))
     if c==1:
-        c2=int(input('1.edit \n2.show'))
+        c2=int(input('1.edit \n2.show \nEnter choice:'))
 	       if c2==1:
 			ed_w()
 		elif c2==2:
 			sh_w()
     elif c==2:
-        c2=int(input('1.edit \n2.show'))
+        c2=int(input('1.edit \n2.show \nEnter choice:'))
 	       if c2==1:
 			ed_h()
 		elif c2==2:
 			sh_h()
     elif c==3:
-        c2=int(input('1.edit \n2.show'))
+        c2=int(input('1.edit \n2.show \nEnter choice:'))
 	       if c2==1:
 			ed_r()
 		elif c2==2:
