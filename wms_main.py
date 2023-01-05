@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Dec 29 21:24:38 2022
-
 @author: sooryankc
 """
 print('    __________________________________________________   ')
-print('    888       888  .d8888b.  888b     d888  .d8888b.     ')
-print('    888   o   888 d88P  Y88b 8888b   d8888 d88P  Y88b    ')
-print('    888  d8b  888 888    888 88888b.d88888 Y88b.         ')
-print('    888 d888b 888 888        888Y88888P888  "Y888b.      ')
-print('    888d88888b888 888        888 Y888P 888     "Y88b.    ')
-print('    88888P Y88888 888    888 888  Y8P  888       "888    ')
-print('    8888P   Y8888 Y88b  d88P 888   "   888 Y88b  d88P    ')
-print('    888P     Y888  "Y8888P"  888       888  "Y8888P"     ')
+print('    888       888   .d8888b.    888b     d888   .d8888b.     ')
+print('    888   o   888  d88P   Y88b  8888b   d8888  d88P  Y88b    ')
+print('    888  d8b  888  888     888  88888b.d88888  Y88b.         ')
+print('    888 d888b 888  888          888Y88888P888   "Y888b.      ')
+print('    888d88888b888  888          888 Y888P 888      "Y88b.    ')
+print('    88888P Y88888  888     888  888  Y8P  888        "888    ')
+print('    8888P   Y8888  Y88b   d88P  888   "   888  Y88b  d88P    ')
+print('    888P     Y888    "Y8888P"   888       888   "Y8888P"     ')
 print('    __________________________________________________   ')
 import mysql.connector
 m_con=mysql.connector.connect(host='localhost',user='root',password='password')
