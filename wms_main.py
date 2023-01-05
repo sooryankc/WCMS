@@ -5,16 +5,16 @@ Created on Thu Dec 29 21:24:38 2022
 
 @author: sooryankc
 """
-print('--  __________________________________________________ --')
-print('--  888_______888__.d8888b.__888b_____d888__.d8888b.__ --')
-print('--  888___o___888_d88P__Y88b_8888b___d8888_d88P__Y88b_ --')
-print('--  888__d8b__888_888____888_88888b.d88888_Y88b.______ --')
-print('--  888_d888b_888_888________888Y88888P888__"Y888b.___ --')
-print('--  888d88888b888_888________888_Y888P_888_____"Y88b._ --')
-print('--  88888P_Y88888_888____888_888__Y8P__888_______"888_ --')
-print('--  8888P___Y8888_Y88b__d88P_888___"___888_Y88b__d88P_ --')
-print('--  888P_____Y888__"Y8888P"__888_______888__"Y8888P"__ --')
-print('--  __________________________________________________ --')
+print('    __________________________________________________   ')
+print('    888       888  .d8888b.  888b     d888  .d8888b.     ')
+print('    888   o   888 d88P  Y88b 8888b   d8888 d88P  Y88b    ')
+print('    888  d8b  888 888    888 88888b.d88888 Y88b.         ')
+print('    888 d888b 888 888        888Y88888P888  "Y888b.      ')
+print('    888d88888b888 888        888 Y888P 888     "Y88b.    ')
+print('    88888P Y88888 888    888 888  Y8P  888       "888    ')
+print('    8888P   Y8888 Y88b  d88P 888   "   888 Y88b  d88P    ')
+print('    888P     Y888  "Y8888P"  888       888  "Y8888P"     ')
+print('    __________________________________________________   ')
 import mysql.connector
 m_con=mysql.connector.connect(host='localhost',user='root',password='password')
 m_cur=m_con.cursor()
@@ -31,7 +31,7 @@ def ed_w():
     m_cur=m_con.cursor()
     m_cur.execute('use WMS')
     while True:
-        c_s=int(input('1.Add new worker \n2.Edit details \n3.Delete data \n4.Exit'))
+        c_s=int(input('\n1.Add new worker \n2.Edit details \n3.Delete data \n4.Exit'))
         if c_s==1:
             w1=int(input('enter sector id:'))
             w2=int(input('enter worker_id:'))
@@ -44,7 +44,7 @@ def ed_w():
             print('Values inserted successfully')
         elif c_s==2:
             m_cur.execute('use WMS')
-            c_s2=int(input('1.Change residence address \n2.Change contact no.'))
+            c_s2=int(input('\n1.Change residence address \n2.Change contact no.'))
             if c_s2==1:
                 sid=int(input('Enter worker id'))
                 a=input('Enter address:')
@@ -73,7 +73,7 @@ def ed_h():
     m_cur=m_con.cursor()
     m_cur.execute('use WMS')
     while True:
-        c_h=int(input('1.Add new house \n2.Edit details \n3.Delete data \n4.Exit'))
+        c_h=int(input('\n1.Add new house \n2.Edit details \n3.Delete data \n4.Exit'))
         m_cur.execute('use WMS')
         if c_h==1:
             h1=int(input('enter house id:'))
@@ -85,7 +85,7 @@ def ed_h():
             m_con.commit()
             print('Values inserted successfully')
         elif c_h==2:
-            c_h2=int(input('1.Change residence address \n2.Change contact no. \n2.Change resident name'))
+            c_h2=int(input('\n1.Change residence address \n2.Change contact no. \n2.Change resident name'))
             hid=int(input('Enter house id'))
             if c_h2==1:
                 a=input('Enter address:')
@@ -113,7 +113,7 @@ def ed_r():
     m_cur=m_con.cursor()
     m_cur.execute('use WMS')
     while True:
-        c_r=int(input('1.Enter new data \n2.Update payment status \n3.Update waste collection status \n4.Exit:'))
+        c_r=int(input('\n1.Enter new data \n2.Update payment status \n3.Update waste collection status \n4.Exit:'))
         if c_r==1:
             r0=input('Enter date(dd/mm/yyyy):')
             r1=int(input('enter house id:'))
@@ -146,44 +146,53 @@ def sh_w():
     m_cur.execute('use WMS')
     m_cur('select * from sector_w')
     row=m_cur.fetchall()
-    print('Sector\t\t Worker ID\t\t Worker Name\t\t Worker Address \t\tWorker Phone no.')
-    for r in row:
-        print(r[0],'\t\t', r[1],'\t\t', r[2],'\t\t', r[3],'\t\t', r[4])
+    if row.rowcount()==0:
+        print('No data in the table')
+    else:
+        print('Sector \t\t Worker ID \t\t Worker Name \t\t Worker Address \t\t Worker Phone no.')
+        for r in row:
+            print(r[0],'\t\t', r[1],'\t\t', r[2],'\t\t', r[3],'\t\t', r[4])
 def sh_h():
     m_con=mysql.connector.connect(host='localhost',user='root',password='password')
     m_cur=m_con.cursor() 
     m_cur.execute('use WMS')
     m_cur('select * from sector_h')
     row=m_cur.fetchall()
-    print('House id\t\t Address\t\t Resident Name\t\t Resdient Phone no. \t\t Sector')
-    for r in row:
-        print(r[0],'\t\t' ,r[1],'\t\t' ,r[2],'\t\t' ,r[3],'\t\t' ,r[4],'\t\t')
+    if row.rowcount()==0:
+        print('No data in the list')
+    else:
+        print('House id \t\t Address \t\t Resident Name \t\t Resdient Phone no. \t\t Sector')
+        for r in row:
+            print(r[0],'\t\t' ,r[1],'\t\t' ,r[2],'\t\t' ,r[3],'\t\t' ,r[4],'\t\t')
 def sh_r():
     m_con=mysql.connector.connect(host='localhost',user='root',password='password')
     m_cur=m_con.cursor() 
     m_cur.execute('use WMS')
     m_cur('select * from record')
     row=m_cur.fetchall()
-    print('Date\t\t House ID\t\t Waste Collection status\t\t Payment Amount\t\t Payment Status')
-    for r in row:
-        print(r[0],'\t\t',r[1],'\t\t',r[2],'\t\t',r[3],'\t\t')
+    if row.rowcount()==0:
+        print('No data in the list')
+    else:
+        print('Date \t\t House ID \t\t Waste Collection status \t\t Payment Amount \t\t Payment Status')
+        for r in row:
+            print(r[0],'\t\t',r[1],'\t\t',r[2],'\t\t',r[3],'\t\t')
 while True:
-    print('1.Sector Worker\n 2.Sector House\n 3.Record')
+    print('\n1.Sector Worker\n 2.Sector House\n 3.Record')
     c=int(input('Enter choice:'))
     if c==1:
-        c2=int(input('1.edit \n2.show \nEnter choice:'))
+        c2=int(input('\n1.edit \n2.show \nEnter choice:'))
         if c2==1:
             ed_w()
         elif c2==2:
             sh_w()
     elif c==2:
-        c2=int(input('1.edit \n2.show \nEnter choice:'))
+        c2=int(input('\n1.edit \n2.show \nEnter choice:'))
         if c2==1:
             ed_h()
         elif c2==2:
             sh_h()
     elif c==3:
-        c2=int(input('1.edit \n2.show \nEnter choice:'))
+        c2=int(input('\n1.edit \n2.show \nEnter choice:'))
         if c2==1:
             ed_r()
         elif c2==2:
