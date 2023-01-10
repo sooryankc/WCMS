@@ -13,6 +13,7 @@ print('''    _____________________________________________________
     8888P   Y8888  Y88b   d88P  888   "   888  Y88b  d88P    
     888P     Y888    "Y8888P"   888       888   "Y8888P"     
     _____________________________________________________ ''')   
+print()
 
 print('Welcome!!\nYou have now entered the waste collection management portal')
 import mysql.connector
